@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class SplashAnimation extends StatefulWidget {
@@ -16,6 +15,7 @@ class _SplashAnimationState extends State<SplashAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _flipAnimation;
+
   int _flipCount = 0;
 
   @override
@@ -42,7 +42,8 @@ class _SplashAnimationState extends State<SplashAnimation>
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    _controller.forward(); // Start the animation
+    _controller.forward(); // Start the animation 
+
   }
 
   @override
