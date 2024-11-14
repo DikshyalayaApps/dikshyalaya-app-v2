@@ -1,9 +1,11 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 class AppLocalizations {
   final Locale locale;
+  final Map<String, String> _localizedStrings = {};
 
   AppLocalizations(this.locale);
 
@@ -13,21 +15,18 @@ class AppLocalizations {
 
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
-  late Map<String, String> _localizedStrings = {};
+  // Load specific screen's language file
+  Future<bool> loadScreenLocalization(String screenName) async {
+    // Check if the file is already loaded for the screen
+    if (_localizedStrings.isEmpty) {
+      final jsonString = await rootBundle.loadString('lib/l10n/${locale.languageCode}/$screenName.json');
+      if (kDebugMode) {
+        print('Loading JSON from: lib/l10n/${locale.languageCode}/$screenName.json');
+      }
 
-  Future<bool> load() async {
-    // List of screens to load translations for
-    List<String> screens = ['home_screen', 'settings_screen', 'other_screen'];
-
-    for (String screen in screens) {
-      // Load each screen-specific JSON file based on locale
-      final jsonString = await rootBundle.loadString('lib/l10n/${locale.languageCode}/$screen.json');
       final Map<String, dynamic> jsonMap = json.decode(jsonString);
-
-      // Merge the key-value pairs from each screen file into _localizedStrings
       _localizedStrings.addAll(jsonMap.map((key, value) => MapEntry(key, value.toString())));
     }
-
     return true;
   }
 
@@ -40,12 +39,12 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   const _AppLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => ['en'].contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
     AppLocalizations localizations = AppLocalizations(locale);
-    await localizations.load();
+    //await localizations.loadScreenLocalization('home_screen');  // Default screen to load
     return localizations;
   }
 
