@@ -38,9 +38,11 @@ dependencies:
   cupertino_icons: ^1.0.8
   intl: ^0.20.0
   flutter_riverpod: ^2.6.1
+  
 
 dependency_overrides:
   intl: ^0.20.0
+  flutter_native_splash: ^2.4.2
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +79,16 @@ flutter_launcher_icons:
   image_path: "assets/images/icon.png" # Path to your app icon
   android_icon_background: "#ffffff"  # Set the background to a solid color (e.g., white)
   ios_icon_background: "#ffffff"     # Optionally, set the iOS background to solid color
+
+  # Run the following command to generate launcher icons
+  # flutter pub run flutter_launcher_icons:main
+
+flutter_native_splash:
+  color: "#0A0E21"
+  image: assets/images/logo.png
+  # Run the following command after setting up flutter_native_splash
+  # flutter pub run flutter_native_splash:create
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

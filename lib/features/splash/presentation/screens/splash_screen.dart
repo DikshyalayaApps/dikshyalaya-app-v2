@@ -15,8 +15,8 @@ class SplashScreen extends StatelessWidget {
       body: Center(
         child: SplashAnimation(
           child: Container(
-              width: 150, // Adjust based on logo size
-              height: 150,
+              width: 256, // Adjust based on logo size
+              height: 256,
               decoration: const BoxDecoration(
                 //shape: BoxShape.circle,
                 image: DecorationImage(
