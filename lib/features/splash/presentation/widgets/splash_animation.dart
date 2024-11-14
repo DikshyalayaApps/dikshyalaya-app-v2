@@ -27,12 +27,12 @@ class _SplashAnimationState extends State<SplashAnimation>
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _flipCount++;
-          if (_flipCount >= 4) {
-            // Stop after two full flips
-            _controller.stop();
-          } 
+          // if (_flipCount >= 4) {
+          //   // Stop after two full flips
+          //   _controller.stop();
+          // } 
           // else {
-          //   _controller.forward(from: 0); // Restart for the next flip
+            _controller.forward(from: 0); // Restart for the next flip
           // }
         }
       });

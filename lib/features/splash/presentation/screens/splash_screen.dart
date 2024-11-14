@@ -15,24 +15,16 @@ class SplashScreen extends StatelessWidget {
       body: Center(
         child: SplashAnimation(
           child: Container(
-            padding: const EdgeInsets.all(8.0), // Space between border and logo
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                  color: Colors.white, width: 1.0), // White circular border
-            ),
-            child: Container(
               width: 150, // Adjust based on logo size
               height: 150,
               decoration: const BoxDecoration(
-                shape: BoxShape.circle,
+                //shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage('assets/images/logo.png'),
                   fit: BoxFit.contain, // Ensures the entire image is visible within the border
                 ),
               ),
             ),
-          ),
         ),
       ),
     );
