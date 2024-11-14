@@ -1,4 +1,4 @@
-import 'package:dikshyalaya_v2/app/app_localizations.dart';
+// import 'package:dikshyalaya_v2/app/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:dikshyalaya_v2/core/constants/colors.dart';
 import 'package:dikshyalaya_v2/features/splash/presentation/widgets/splash_animation.dart';
