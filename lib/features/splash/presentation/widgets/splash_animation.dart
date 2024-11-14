@@ -27,7 +27,7 @@ class _SplashAnimationState extends State<SplashAnimation>
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _flipCount++;
-          if (_flipCount >= 4) {
+          if (_flipCount >= 2) {
             // Optionally delay the navigation after all flips are done
             Future.delayed(const Duration(seconds: 1), () {
               // ignore: use_build_context_synchronously

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dikshyalaya_v2/features/splash/presentation/screens/splash_screen.dart';
-import 'package:dikshyalaya_v2/app/app_routes.dart'; 
+import 'package:dikshyalaya_v2/app/app_routes.dart'; // Updated import path
 
 Future<void> main() async {
   await dotenv.load(fileName: "assets/.env");
@@ -15,8 +15,8 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final onboardingRepository = OnboardingRepository(ApiClient().dio);
-  late final GetOnboardingSlides getOnboardingSlides = GetOnboardingSlides(onboardingRepository);
+   final onboardingRepository = OnboardingRepository(ApiClient().dio);
+   late final GetOnboardingSlides getOnboardingSlides = GetOnboardingSlides(onboardingRepository);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         // Define the onboarding route dynamically using getOnboardingSlides
-        ...getAppRoutes(getOnboardingSlides),
+         ...getAppRoutes(getOnboardingSlides),
       },
     );
   }

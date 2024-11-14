@@ -40,14 +40,6 @@ class OnboardingPageState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          TextButton(
-            onPressed: widget.onSkip,
-            child: const Text('Skip', style: TextStyle(color: Colors.blue)),
-          ),
-        ],
-      ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
           : Column(
@@ -58,15 +50,62 @@ class OnboardingPageState extends State<OnboardingScreen> {
                     itemCount: _slides.length,
                     itemBuilder: (context, index) {
                       final slide = _slides[index];
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.network(slide.imageUrl),
-                          const SizedBox(height: 20),
-                          Text(slide.title, style: const TextStyle(fontSize: 24)),
-                          const SizedBox(height: 10),
-                          Text(slide.description),
-                        ],
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: Image.network(
+                                slide.image,
+                                fit: BoxFit.cover ,
+                                loadingBuilder:
+                                    (context, child, loadingProgress) {
+                                  if (loadingProgress == null) {
+                                    return child;
+                                  } else {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value: loadingProgress
+                                                    .expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                (loadingProgress
+                                                        .expectedTotalBytes ??
+                                                    1)
+                                            : null,
+                                      ),
+                                    );
+                                  }
+                                },
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(Icons
+                                      .error); // Placeholder for image load error
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                slide.title,
+                                style: const TextStyle(fontSize: 24),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Text(
+                                slide.description,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
