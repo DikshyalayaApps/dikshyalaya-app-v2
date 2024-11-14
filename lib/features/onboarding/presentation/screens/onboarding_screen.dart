@@ -63,7 +63,7 @@ class OnboardingPageState extends State<OnboardingScreen> {
                         children: [
                           Image.network(slide.imageUrl),
                           const SizedBox(height: 20),
-                          Text(slide.title, style: TextStyle(fontSize: 24)),
+                          Text(slide.title, style: const TextStyle(fontSize: 24)),
                           const SizedBox(height: 10),
                           Text(slide.description),
                         ],
@@ -74,7 +74,7 @@ class OnboardingPageState extends State<OnboardingScreen> {
                 SmoothPageIndicator(
                   controller: _controller,
                   count: _slides.length,
-                  effect: WormEffect(),
+                  effect: const WormEffect(),
                 ),
               ],
             ),
