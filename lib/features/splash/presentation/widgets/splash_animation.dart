@@ -22,7 +22,7 @@ class _SplashAnimationState extends State<SplashAnimation>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 8),
       vsync: this,
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
