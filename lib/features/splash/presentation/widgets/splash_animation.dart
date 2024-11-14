@@ -38,11 +38,20 @@ class _SplashAnimationState extends State<SplashAnimation>
       });
 
     // Set the animation to do a full 360-degree (2 * pi) rotation
-    _flipAnimation = Tween<double>(begin: 0, end: 2 * pi).animate(
+    _flipAnimation = Tween<double>(end: 0, begin: 2 * pi).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
     _controller.forward(); // Start the animation 
+
+    CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+
+    // Navigate to the next screen when the animation completes
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+       // Navigator.of(context).pushReplacementNamed('/home'); // Replace with your home screen route
+      }
+    });
 
   }
 
