@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:dikshyalaya_v2/app/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class SplashAnimation extends StatefulWidget {
@@ -7,7 +8,6 @@ class SplashAnimation extends StatefulWidget {
   const SplashAnimation({super.key, required this.child});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SplashAnimationState createState() => _SplashAnimationState();
 }
 
@@ -27,13 +27,16 @@ class _SplashAnimationState extends State<SplashAnimation>
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _flipCount++;
-          // if (_flipCount >= 4) {
-          //   // Stop after two full flips
-          //   _controller.stop();
-          // } 
-          // else {
+          if (_flipCount >= 4) {
+            // Optionally delay the navigation after all flips are done
+            Future.delayed(const Duration(seconds: 1), () {
+              // ignore: use_build_context_synchronously
+              Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
+            });
+            _controller.stop();
+          } else {
             _controller.forward(from: 0); // Restart for the next flip
-          // }
+          }
         }
       });
 
@@ -42,17 +45,7 @@ class _SplashAnimationState extends State<SplashAnimation>
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    _controller.forward(); // Start the animation 
-
-    CurvedAnimation(parent: _controller, curve: Curves.easeIn);
-
-    // Navigate to the next screen when the animation completes
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-       // Navigator.of(context).pushReplacementNamed('/home'); // Replace with your home screen route
-      }
-    });
-
+    _controller.forward(); // Start the animation
   }
 
   @override
