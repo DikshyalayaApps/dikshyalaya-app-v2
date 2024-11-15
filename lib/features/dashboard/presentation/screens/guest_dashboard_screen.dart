@@ -2,6 +2,7 @@ import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/blurred_b
 import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/collapsed_app_bar_content.dart';
 import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/expanded_app_bar_content.dart';
 import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/page_body_widget.dart';
+import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/slide_up_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -35,55 +36,60 @@ class GuestDashboardScreen extends HookWidget {
     }, [scrollController]);
 
     return NotificationListener<ScrollNotification>(
-          onNotification: (notification) {
-    isCollapsed.value = scrollController.hasClients &&
-        scrollController.offset >= (expandedBarHeight - collapsedBarHeight);
-    return true;
-          },
-          child: Stack(
-    children: [
-      BlurredBackdropImage(),
-      CustomScrollView(
-        controller: scrollController,
-        slivers: [
-          SliverAppBar(
-            expandedHeight: expandedBarHeight,
-            collapsedHeight: collapsedBarHeight,
-            centerTitle: false,
-            pinned: true,
-            title: AnimatedOpacity(
-              duration: const Duration(milliseconds: 200),
-              opacity: isCollapsed.value ? 1 : 0,
-              child: CollapsedAppBarContent(),
-            ),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            // leading: const BackButton(
-            //   color: Colors.white,
-            // ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: ExpandedAppBarContent(),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height,
-              ),
-              child: Material(
-                elevation: 7,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+      onNotification: (notification) {
+        isCollapsed.value = scrollController.hasClients &&
+            scrollController.offset >= (expandedBarHeight - collapsedBarHeight);
+        return true;
+      },
+      child: Stack(
+        children: [
+          BlurredBackdropImage(),
+          CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              SliverAppBar(
+                expandedHeight: expandedBarHeight,
+                collapsedHeight: collapsedBarHeight,
+                centerTitle: false,
+                pinned: true,
+                title: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 200),
+                  opacity: isCollapsed.value ? 1 : 0,
+                  child: CollapsedAppBarContent(),
                 ),
-                child: PageBodyWidget(),
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                // leading: const BackButton(
+                //   color: Colors.white,
+                // ),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: ExpandedAppBarContent(),
+                ),
               ),
-            ),
-          )
-        ],
-      )
-    ],
+              SliverToBoxAdapter(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: MediaQuery.of(context).size.height,
+                  ),
+                  child: Material(
+                    elevation: 7,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
+                    child: PageBodyWidget(),
+                  ),
+                ),
+              )
+            ],
           ),
-        );
+           SlidingPanelWidget(
+            maxHeight: 350, //MediaQuery.of(context).size.height * 0.5,
+            minHeight:200,
+          ),
+        
+        ],
+      ),
+    );
   }
 }
