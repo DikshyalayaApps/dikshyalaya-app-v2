@@ -81,7 +81,7 @@ flutter_launcher_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/images/icon.png" # Path to your app icon
+  image_path: "assets/images/icon.jpg" # Path to your app icon
   android_icon_background: "#ffffff"  # Set the background to a solid color (e.g., white)
   ios_icon_background: "#ffffff"     # Optionally, set the iOS background to solid color
 
