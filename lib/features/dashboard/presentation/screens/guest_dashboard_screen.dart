@@ -11,7 +11,7 @@ class GuestDashboardScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     const collapsedBarHeight = 80.0;
-    const expandedBarHeight = 600.0;
+    const expandedBarHeight = 400.0;
 
     final scrollController = useScrollController();
     final isCollapsed = useState(false);
@@ -20,11 +20,14 @@ class GuestDashboardScreen extends HookWidget {
     useEffect(() {
       scrollController.addListener(() {
         if (scrollController.hasClients) {
-          // Calculate the maximum offset limit
           final maxOffset = expandedBarHeight - collapsedBarHeight;
           if (scrollController.offset > maxOffset) {
-            // Jump back to max offset if it exceeds
-            scrollController.jumpTo(maxOffset);
+            // Smoothly scroll back to max offset
+            scrollController.animateTo(
+              maxOffset,
+              duration: const Duration(milliseconds: 100),
+              curve: Curves.easeOut,
+            );
           }
         }
       });
@@ -55,9 +58,9 @@ class GuestDashboardScreen extends HookWidget {
                 ),
                 elevation: 0,
                 backgroundColor: Colors.transparent,
-                leading: const BackButton(
-                  color: Colors.white,
-                ),
+                // leading: const BackButton(
+                //   color: Colors.white,
+                // ),
                 flexibleSpace: FlexibleSpaceBar(
                   background: ExpandedAppBarContent(),
                 ),
