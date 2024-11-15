@@ -35,55 +35,55 @@ class GuestDashboardScreen extends HookWidget {
     }, [scrollController]);
 
     return NotificationListener<ScrollNotification>(
-      onNotification: (notification) {
-        isCollapsed.value = scrollController.hasClients &&
-            scrollController.offset >= (expandedBarHeight - collapsedBarHeight);
-        return true;
-      },
-      child: Stack(
-        children: [
-          BlurredBackdropImage(),
-          CustomScrollView(
-            controller: scrollController,
-            slivers: [
-              SliverAppBar(
-                expandedHeight: expandedBarHeight,
-                collapsedHeight: collapsedBarHeight,
-                centerTitle: false,
-                pinned: true,
-                title: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 200),
-                  opacity: isCollapsed.value ? 1 : 0,
-                  child: CollapsedAppBarContent(),
-                ),
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                // leading: const BackButton(
-                //   color: Colors.white,
-                // ),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: ExpandedAppBarContent(),
-                ),
+          onNotification: (notification) {
+    isCollapsed.value = scrollController.hasClients &&
+        scrollController.offset >= (expandedBarHeight - collapsedBarHeight);
+    return true;
+          },
+          child: Stack(
+    children: [
+      BlurredBackdropImage(),
+      CustomScrollView(
+        controller: scrollController,
+        slivers: [
+          SliverAppBar(
+            expandedHeight: expandedBarHeight,
+            collapsedHeight: collapsedBarHeight,
+            centerTitle: false,
+            pinned: true,
+            title: AnimatedOpacity(
+              duration: const Duration(milliseconds: 200),
+              opacity: isCollapsed.value ? 1 : 0,
+              child: CollapsedAppBarContent(),
+            ),
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            // leading: const BackButton(
+            //   color: Colors.white,
+            // ),
+            flexibleSpace: FlexibleSpaceBar(
+              background: ExpandedAppBarContent(),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height,
               ),
-              SliverToBoxAdapter(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height,
-                  ),
-                  child: Material(
-                    elevation: 7,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
-                    child: PageBodyWidget(),
-                  ),
+              child: Material(
+                elevation: 7,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
                 ),
-              )
-            ],
+                child: PageBodyWidget(),
+              ),
+            ),
           )
         ],
-      ),
-    );
+      )
+    ],
+          ),
+        );
   }
 }

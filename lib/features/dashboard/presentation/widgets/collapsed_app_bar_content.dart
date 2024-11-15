@@ -18,9 +18,16 @@ class CollapsedAppBarContent extends StatelessWidget {
         const Spacer(),
         SizedBox(
           height: 40,
-          child: Image.asset(
-            "assets/images/icon.png",
-            fit: BoxFit.cover,
+          child: Material(
+            borderRadius: BorderRadius.circular(
+              20,
+            ),
+            elevation: 7,
+            clipBehavior: Clip.antiAlias,
+            child: Image.asset(
+              "assets/images/icon.png",
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         const SizedBox(
