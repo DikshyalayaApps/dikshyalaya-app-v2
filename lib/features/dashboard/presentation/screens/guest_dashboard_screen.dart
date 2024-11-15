@@ -2,7 +2,6 @@ import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/blurred_b
 import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/collapsed_app_bar_content.dart';
 import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/expanded_app_bar_content.dart';
 import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/page_body_widget.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -11,20 +10,31 @@ class GuestDashboardScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    const collapsedBarHeight =100.0;
+    const collapsedBarHeight = 80.0;
     const expandedBarHeight = 600.0;
 
     final scrollController = useScrollController();
-    final isCollapsed = useState(true);
+    final isCollapsed = useState(false);
 
-    if (kDebugMode) {
-      print("iscollpsed: $isCollapsed");
-    }
+    // Add a listener to limit the scroll offset
+    useEffect(() {
+      scrollController.addListener(() {
+        if (scrollController.hasClients) {
+          // Calculate the maximum offset limit
+          final maxOffset = expandedBarHeight - collapsedBarHeight;
+          if (scrollController.offset > maxOffset) {
+            // Jump back to max offset if it exceeds
+            scrollController.jumpTo(maxOffset);
+          }
+        }
+      });
+      return scrollController.dispose;
+    }, [scrollController]);
 
     return NotificationListener<ScrollNotification>(
       onNotification: (notification) {
         isCollapsed.value = scrollController.hasClients &&
-            scrollController.offset > (expandedBarHeight - collapsedBarHeight);
+            scrollController.offset >= (expandedBarHeight - collapsedBarHeight);
         return true;
       },
       child: Stack(
@@ -39,7 +49,7 @@ class GuestDashboardScreen extends HookWidget {
                 centerTitle: false,
                 pinned: true,
                 title: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 200),
                   opacity: isCollapsed.value ? 1 : 0,
                   child: CollapsedAppBarContent(),
                 ),
