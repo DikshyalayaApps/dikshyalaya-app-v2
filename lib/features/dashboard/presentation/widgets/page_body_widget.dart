@@ -1,5 +1,5 @@
-import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/favorite_button_widget.dart';
-import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/watch_now_button_widget.dart';
+// import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/favorite_button_widget.dart';
+// import 'package:dikshyalaya_v2/features/dashboard/presentation/widgets/watch_now_button_widget.dart';
 import 'package:flutter/material.dart';
 
 /// Shows the body of the movie details
@@ -12,22 +12,22 @@ class PageBodyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: const [
-              Expanded(
-                child: WatchNowButtonWidget(),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              FavoriteButtonWidget(),
-            ],
-          ),
-          const Divider(),
+          // Row(
+          //   children: const [
+          //     Expanded(
+          //       child: WatchNowButtonWidget(),
+          //     ),
+          //     SizedBox(
+          //       width: 10,
+          //     ),
+          //     FavoriteButtonWidget(),
+          //   ],
+          // ),
+          // const Divider(),
           const SizedBox(
             height: 10,
           ),

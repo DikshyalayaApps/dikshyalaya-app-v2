@@ -74,8 +74,8 @@ class GuestDashboardScreen extends HookWidget {
                   child: Material(
                     elevation: 7,
                     borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
                     ),
                     child: PageBodyWidget(),
                   ),
