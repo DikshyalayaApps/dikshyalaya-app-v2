@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:math';
 import 'package:dikshyalaya_v2/app/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashAnimation extends StatefulWidget {
   final Widget child;
@@ -30,8 +33,7 @@ class _SplashAnimationState extends State<SplashAnimation>
           if (_flipCount >= 2) {
             // Optionally delay the navigation after all flips are done
             Future.delayed(const Duration(seconds: 1), () {
-              // ignore: use_build_context_synchronously
-              Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
+               _navigateBasedOnFirstTime();
             });
             _controller.stop();
           } else {
@@ -46,6 +48,20 @@ class _SplashAnimationState extends State<SplashAnimation>
     );
 
     _controller.forward(); // Start the animation
+  }
+
+   Future<void> _navigateBasedOnFirstTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isFirstTime = prefs.getBool('first_time') ?? true;
+
+    // Navigate to either the onboarding or dashboard based on first-time check
+    if (isFirstTime) {
+      // Navigate to Onboarding
+      Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
+    } else {
+      // Navigate to Dashboard
+      Navigator.of(context).pushReplacementNamed(AppRoutes.dashboard);
+    }
   }
 
   @override

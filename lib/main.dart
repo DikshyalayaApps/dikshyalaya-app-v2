@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dikshyalaya_v2/features/splash/presentation/screens/splash_screen.dart';
-import 'package:dikshyalaya_v2/app/app_routes.dart'; // Updated import path
+import 'package:dikshyalaya_v2/app/app_routes.dart'; 
 
 Future<void> main() async {
   await dotenv.load(fileName: "assets/.env");
