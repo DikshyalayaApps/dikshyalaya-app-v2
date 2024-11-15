@@ -2,6 +2,8 @@
 
 import 'dart:math';
 import 'package:dikshyalaya_v2/app/app_routes.dart';
+import 'package:dikshyalaya_v2/core/navigation/slide_page_route.dart';
+import 'package:dikshyalaya_v2/features/dashboard/presentation/screens/guest_dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -60,7 +62,15 @@ class _SplashAnimationState extends State<SplashAnimation>
       Navigator.of(context).pushReplacementNamed(AppRoutes.onboarding);
     } else {
       // Navigate to Dashboard
-      Navigator.of(context).pushReplacementNamed(AppRoutes.dashboard);
+      // Navigator.of(context).pushReplacementNamed(AppRoutes.guestdashboard);
+       Navigator.of(context).pushReplacement(
+              SlidePageRoute(
+                page: const GuestDashboardScreen(),
+                direction: 'right', // Choose direction (e.g., 'left' or 'right')
+                duration: Duration(milliseconds: 800)
+              ),
+            );
+      
     }
   }
 
