@@ -26,7 +26,7 @@ class _SlidingPanelWidgetState extends State<SlidingPanelWidget> with SingleTick
     // Initialize the animation controller with a loop
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(minutes: 2),
+      duration: const Duration(seconds: 30),
     )..repeat(reverse: true);  // Make the animation loop
 
     // The animation that will drive the gradient transition
@@ -91,8 +91,8 @@ class _SlidingPanelWidgetState extends State<SlidingPanelWidget> with SingleTick
                        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
                       gradient: LinearGradient(
                         colors: [colorStart, colorEnd],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
                       ),
                     ),
                     child: GridView.builder(
