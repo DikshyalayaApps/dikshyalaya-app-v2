@@ -23,7 +23,7 @@ Map<String, WidgetBuilder> getAppRoutes(
           getOnboardingSlides: getOnboardingSlides,
           onSkip: () async {
             final prefs = await SharedPreferences.getInstance();
-            await prefs.setBool('first_time', true);
+            await prefs.setBool('first_time', false);
             //Navigator.of(context).pushReplacementNamed(AppRoutes.guestdashboard);
             // Use SlidePageRoute for navigation
             Navigator.of(context).pushReplacement(
