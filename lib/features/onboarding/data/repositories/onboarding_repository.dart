@@ -1,5 +1,6 @@
+import 'package:dikshyalaya_v2/features/onboarding/data/models/onboarding_slide_model.dart';
 import 'package:dio/dio.dart';
-import '../models/onboarding_slide_model.dart';
+
 
 class OnboardingRepository {
   final Dio apiClient;

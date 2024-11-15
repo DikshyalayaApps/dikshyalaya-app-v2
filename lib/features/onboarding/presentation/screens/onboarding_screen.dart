@@ -1,9 +1,9 @@
 // presentation/pages/onboarding_page.dart
+import 'package:dikshyalaya_v2/features/onboarding/data/models/onboarding_slide_model.dart';
+import 'package:dikshyalaya_v2/features/onboarding/domain/usecases/get_onboarding_slides.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../data/models/onboarding_slide_model.dart';
-import '../../domain/usecases/get_onboarding_slides.dart';
+
 
 class OnboardingScreen extends StatefulWidget {
   final GetOnboardingSlides getOnboardingSlides;
