@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
@@ -97,18 +99,18 @@ class _SlidingPanelWidgetState extends State<SlidingPanelWidget> with SingleTick
                     ),
                     child: GridView.builder(
                       
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(15),
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,  // 4 icons per row
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                        crossAxisSpacing:1,
+                        mainAxisSpacing: 4,
                       ),
                       itemCount: 8,  // Number of icons in the grid
                       itemBuilder: (BuildContext context, int index) {
                         final icons = [
                           Icons.home,
                           Icons.search,
-                          Icons.notifications,
+                          Icons.newspaper,
                           Icons.settings,
                           Icons.info,
                           Icons.account_circle,
@@ -118,7 +120,7 @@ class _SlidingPanelWidgetState extends State<SlidingPanelWidget> with SingleTick
                         final labels = [
                           'Home',
                           'Search',
-                          'Notifications',
+                          'News',
                           'Settings',
                           'Info',
                           'Profile',
@@ -137,7 +139,7 @@ class _SlidingPanelWidgetState extends State<SlidingPanelWidget> with SingleTick
                                 Navigator.pushNamed(context, '/search');
                                 break;
                               case 2:
-                                Navigator.pushNamed(context, '/notifications');
+                                Navigator.pushNamed(context, '/news');
                                 break;
                               case 3:
                                 Navigator.pushNamed(context, '/settings');

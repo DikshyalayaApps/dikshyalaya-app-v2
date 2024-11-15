@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api
 
 import 'dart:math';
 import 'package:dikshyalaya_v2/app/app_routes.dart';
