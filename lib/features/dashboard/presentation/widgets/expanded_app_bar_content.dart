@@ -12,34 +12,34 @@ class ExpandedAppBarContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: 140,
+          width: 200,
           height: 200,
           child: Material(
             borderRadius: BorderRadius.circular(
-              15,
+              50,
             ),
             elevation: 7,
             clipBehavior: Clip.antiAlias,
             child: Image.asset(
-              "assets/images/logo.png",
-              fit: BoxFit.cover,
+              "assets/images/icon.png",
+              fit: BoxFit.fill,
             ),
           ),
         ),
         const SizedBox(
           height: 10,
         ),
-        // Text(
-        //   "Title Text",
-        //   style: const TextStyle(
-        //     color: Colors.white,
-        //     fontSize: 27,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
-        // const SizedBox(
-        //   height: 5,
-        // ),
+        Text(
+          "Title Text",
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 27,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
         // Text(
         //   "Tagline Text",
         //   style: const TextStyle(
