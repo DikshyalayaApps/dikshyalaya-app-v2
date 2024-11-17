@@ -11,7 +11,7 @@ class GuestDashboardScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    const collapsedBarHeight = 80.0;
+    const collapsedBarHeight = 90.0;
     const expandedBarHeight = 400.0;
 
     final scrollController = useScrollController();
@@ -84,7 +84,7 @@ class GuestDashboardScreen extends HookWidget {
             ],
           ),
            SlidingPanelWidget(
-            maxHeight: 350, //MediaQuery.of(context).size.height * 0.5,
+            maxHeight: 280, //MediaQuery.of(context).size.height * 0.5,
             minHeight:200,
           ),
         
