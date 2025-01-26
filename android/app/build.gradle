@@ -5,9 +5,9 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
-android {    
+android {
     namespace = "com.example.dikshyalaya_v2"
-    compileSdk = 34
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -15,8 +15,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {        
-        jvmTarget = "17"
+    kotlinOptions {
+        jvmTarget = 17
     }
 
     defaultConfig {

@@ -6,11 +6,12 @@ import 'package:dio/dio.dart';
 class ApiClient {
   final Dio dio;
 
-  ApiClient() : dio = Dio(BaseOptions(
-    baseUrl: AppConfig.baseUrl, // Replace with actual URL
-    connectTimeout: const Duration(seconds: 5),
-    receiveTimeout: const Duration(seconds: 3),
-  )) {
+  ApiClient()
+      : dio = Dio(BaseOptions(
+          baseUrl: AppConfig.baseUrl, // Replace with actual URL
+          connectTimeout: const Duration(seconds: 10),
+          receiveTimeout: const Duration(seconds: 10),
+        )) {
     dio.interceptors.add(APIInterceptor());
   }
 }

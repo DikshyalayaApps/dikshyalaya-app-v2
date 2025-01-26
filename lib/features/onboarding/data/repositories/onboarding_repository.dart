@@ -1,7 +1,6 @@
 import 'package:dikshyalaya_v2/features/onboarding/data/models/onboarding_slide_model.dart';
 import 'package:dio/dio.dart';
 
-
 class OnboardingRepository {
   final Dio apiClient;
 
@@ -11,10 +10,9 @@ class OnboardingRepository {
   //Fetching the onboarding slides using the ApiClient
   Future<List<OnboardingSlideModel>> fetchSlides() async {
     try {
-      final response = await apiClient.get('/on-boarding-screen');    
+      final response = await apiClient.get('on-boarding-screen');
       // Check if the response is successful and contains the 'data' field
-      if ( response.data['success'] == true ) {
-        
+      if (response.data['success'] == true) {
         // Map the 'data' field to a list of OnboardingSlideModel objects
         return (response.data['data'] as List)
             .map((json) => OnboardingSlideModel.fromJson(json))
